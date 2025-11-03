@@ -1,0 +1,44 @@
+@use '../../styles/abstracts/var';
+@use '../../styles//abstracts/mixin';
+
+.button{
+    display: inline-flex;
+    background-color: var.$primary-color;
+    border-radius: 25px;
+    padding: 12px 18px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    &__link{
+        @include mixin.flex-center;
+        flex-direction: row-reverse;
+        gap: 7px;
+        &__icon > svg{
+            width: 20px;
+            display: block;       
+            align-self: center;
+            transition: transform 0.3s ease;
+        }
+    }
+    &:hover{
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    &:hover &__link__icon > svg {
+        transform: translateY(3px);
+      }
+}
+
+.buttonSecond{
+    display: inline-flex;
+    border: solid 1px var.$primary-color;
+    border-radius: 25px;
+    padding: 12px 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &__link{
+        color: var.$primary-color;
+    }
+    &:hover{
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+}

@@ -10,16 +10,15 @@ body {
 }
 
 h1{
-  font-size: var.$size-title;
-  font-family: var.$title-font;
+  font-size: var.$size-subtitle;
+  font-family: var.$text-font;
+  color: var.$primary-color;
   font-weight: normal;
-  line-height: 0.9;
-  font-size: 60px;
 }
 
 h2{
   font-size: var.$size-subtitle;
-  font-weight: 600;
+  font-weight: normal;
 }
 
 h3{
