@@ -1,0 +1,42 @@
+@use '../abstracts/var';
+
+body {
+  font-family: var.$text-font;
+  font-size: var.$size-text;
+  max-width: 1800px;
+  margin: 0 auto;
+  background-color: var.$background-color;
+  color: white;
+}
+
+h1{
+  font-size: var.$size-title;
+  font-family: var.$title-font;
+  font-weight: normal;
+  line-height: 0.9;
+  font-size: 60px;
+}
+
+h2{
+  font-size: var.$size-subtitle;
+  font-weight: 600;
+}
+
+h3{
+  font-weight: normal;
+}
+
+p{
+  font-size: var.$size-text;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}

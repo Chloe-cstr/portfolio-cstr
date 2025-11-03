@@ -1,0 +1,11 @@
+@use './abstracts/var';
+@use './bases/base';
+@use './bases/reset';
+@use './abstracts/mixin';
+
+@font-face {
+    font-family: 'MaPolice';
+    src: url('../assets/font/Heyam.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
