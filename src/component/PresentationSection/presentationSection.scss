@@ -15,7 +15,7 @@
         position: absolute;
         inset: -20%; /* dépasse un peu pour un effet doux */
         background:
-            radial-gradient(400px 200px at 30% 30%, rgba(255,255,255,0.12), transparent 60%),
+            radial-gradient(400px 200px at 30% 35%, rgba(255,255,255,0.12), transparent 60%),
             radial-gradient(400px 200px at 60% 60%, rgba(255,255,255,0.08), transparent 70%);
         filter: blur(30px); /* rend les lueurs diffuses */
         pointer-events: none; /* ne bloque pas les clics */
