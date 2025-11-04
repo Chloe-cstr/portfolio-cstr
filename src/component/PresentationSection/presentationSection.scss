@@ -3,6 +3,7 @@
 @use '../../styles/animations/keyframes';
 
 .presentation{
+    margin-top: 50px;
     height: 100vh;
     position: relative;
     overflow: hidden; /* empêche le débordement des lueurs */

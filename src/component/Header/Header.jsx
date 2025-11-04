@@ -63,7 +63,7 @@ const Header = () => {
                             href={item.href}
                             className={`header__nav__item__maj ${
                                 activeSection === item.href.slice(1) ? "active" : ""
-                            }`}
+                            } ${item.label === "Contact" ? "header__nav__item__maj--contact" : ""}`}
                             onClick={() => setIsMenuOpen(false)}
                             >
                             {item.label}

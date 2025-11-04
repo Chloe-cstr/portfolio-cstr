@@ -3,10 +3,11 @@
 @use '../../styles/animations/keyframes';
 
 .media{
+    display: inline-block;
     border: solid 1px var.$primary-color;
     padding: 18px;
     border-radius: 12px;
-    transition: transform 0.25s ease, opacity 0.25s ease;
+    transition: opacity 0.25s ease;
     animation: bounce-in-bottom 1.8s cubic-bezier(0.23, 1, 0.32, 1) both;
     &__link{
         &__icon{
@@ -14,7 +15,7 @@
         }
     }
     &:hover{
-        transform: scale(1.1);
+        transform: translateY(0);
         opacity: 0.5;
     }
 }
