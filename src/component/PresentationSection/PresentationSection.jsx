@@ -20,7 +20,7 @@ const PresentationSection = () =>{
     ]
 
     return(
-        <div className="presentation">
+        <div className="presentation" id="presentation">
             <h1 className="presentation__title">
                 <span className="presentation__title__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
