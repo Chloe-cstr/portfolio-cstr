@@ -3,5 +3,42 @@
 @use '../../styles/animations/keyframes';
 
 .competence{
-    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    &::before{
+        content: "";
+        position: absolute;
+        inset: -20%; /* dépasse un peu pour un effet doux */
+        background:
+            radial-gradient(400px 300px at 30% 35%, rgba(255,255,255,0.12), transparent 60%),
+            radial-gradient(400px 300px at 70% 40%, rgba(255,255,255,0.08), transparent 70%);
+        filter: blur(30px); /* rend les lueurs diffuses */
+        pointer-events: none; /* ne bloque pas les clics */
+    }
+    &__titleContent{
+        @include mixin.flex-center;
+        flex-direction: column;
+        gap: 60px;
+        &__title{
+            border: solid 1px var.$primary-color;
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-size: var.$size-text;
+            opacity: 0.7;
+        }
+        &__text{
+            color: var.$primary-color;
+            font-size: var.$size-subtitle;
+        }
+        &--center{
+            text-align: center;
+            line-height: 1.7;
+        }
+    }
+    &__cards{
+        padding: 60px 80px 60px 80px;
+        @include mixin.flex-center;
+        flex-wrap: wrap;
+        gap: 60px;
+    }
 }
