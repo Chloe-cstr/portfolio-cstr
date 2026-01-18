@@ -1,22 +1,45 @@
 import PropTypes from 'prop-types';
-import './button.scss'
+import './button.scss';
 
-const Button = ({text, className, icon, link}) =>{
-    return(
-        <div className={className}>
-            <a href={link} className={`${className}__link`}>
-                {icon && <span className={`${className}__link__icon`}>{icon}</span>}
-                {text}
+const Button = ({ text, className = '', icon, iconPosition = 'left', href, onClick, type = 'button', ...props }) => {
+    const baseClass = 'btn';
+    const classes = className ? `${baseClass} ${className}` : baseClass;
+
+    const content = iconPosition === 'right' ? (
+        <>
+            <span className="btn__text">{text}</span>
+            {icon && <span className="btn__icon">{icon}</span>}
+        </>
+    ) : (
+        <>
+            {icon && <span className="btn__icon">{icon}</span>}
+            <span className="btn__text">{text}</span>
+        </>
+    );
+
+    if (href) {
+        return (
+            <a href={href} className={classes} {...props}>
+                {content}
             </a>
-        </div>
-    )
+        );
+    }
+
+    return (
+        <button type={type} className={classes} onClick={onClick} {...props}>
+            {content}
+        </button>
+    );
 };
 
 Button.propTypes = {
     text: PropTypes.string.isRequired,
-    className : PropTypes.string.isRequired,
+    className: PropTypes.string,
     icon: PropTypes.node,
-    link : PropTypes.string.isRequired,
+    iconPosition: PropTypes.oneOf(['left', 'right']),
+    href: PropTypes.string,
+    onClick: PropTypes.func,
 };
 
 export default Button;
+

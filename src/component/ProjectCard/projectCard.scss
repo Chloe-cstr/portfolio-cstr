@@ -1,0 +1,192 @@
+@use '../../styles/abstracts/var';
+@use '../../styles/abstracts/mixin';
+
+.project-card {
+    @include mixin.flex-center;
+    gap: 50px;
+
+    @media (max-width: 968px) {
+        gap: 40px;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column !important;
+        gap: 24px;
+    }
+
+    &__media {
+        position: relative;
+        width: 50%;
+        overflow: hidden;
+        border-radius: var.$radius;
+
+        @media (max-width: 768px) {
+            width: 100%;
+        }
+    }
+
+    &__image-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border-radius: var.$radius;
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+        border-radius: var.$radius;
+        transition: transform 0.4s ease;
+        display: block;
+    }
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        border-radius: var.$radius;
+    }
+
+    &__icons {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__icon-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        color: var.$foreground;
+        transition: all 0.3s ease;
+        transform: translateY(10px);
+        opacity: 0;
+
+        &:hover {
+            background-color: var.$primary-foreground;
+            transform: translateY(0) scale(1.1);
+            color: var.$primary-color;
+        }
+    }
+
+    &__media:hover &__img {
+        transform: scale(1.1);
+    }
+
+    &__media:hover &__overlay {
+        opacity: 1;
+    }
+
+    &__media:hover &__icon-link {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 21px;
+        width: 50%;
+        opacity: 0;
+        transform: translateX(100px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+
+        @media (max-width: 768px) {
+            width: 100%;
+            transform: translateY(30px);
+            padding: 0 16px;
+        }
+    }
+
+    &--visible &__content {
+        opacity: 1;
+        transform: translateX(0);
+
+        @media (max-width: 768px) {
+            transform: translateY(0);
+        }
+    }
+
+    &__title {
+        color: var.$foreground;
+        font-size: 30px;
+
+        @media (max-width: 968px) {
+            font-size: 26px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 24px;
+            text-align: center;
+        }
+    }
+
+    &__description {
+        color: var.$muted-foreground;
+
+        @media (max-width: 768px) {
+            font-size: 16px;
+            text-align: center;
+            line-height: 1.6;
+        }
+    }
+
+    &__meta {
+        color: var.$primary-color;
+        font-size: 15px;
+
+        @media (max-width: 768px) {
+            text-align: center;
+        }
+    }
+
+    &__tags {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+
+        @media (max-width: 768px) {
+            justify-content: center;
+            gap: 8px;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            width: 100%;
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    }
+
+    // Alternance gauche/droite
+    &--left {
+        flex-direction: row;
+    }
+
+    &--right {
+        flex-direction: row-reverse;
+    }
+}

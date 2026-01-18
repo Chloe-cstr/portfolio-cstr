@@ -1,44 +1,60 @@
 @use '../../styles/abstracts/var';
-@use '../../styles//abstracts/mixin';
+@use '../../styles/abstracts/mixin';
 
-.button{
+.btn {
     display: inline-flex;
-    background-color: var.$primary-color;
-    border-radius: 25px;
-    padding: 12px 18px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    &__link{
-        @include mixin.flex-center;
-        flex-direction: row-reverse;
-        gap: 7px;
-        &__icon > svg{
-            width: 20px;
-            display: block;       
-            align-self: center;
-            transition: transform 0.3s ease;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: var.$radius;
+    font-size: var.$size-text;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__text {
+        display: inline-block;
+    }
+
+    &--primary {
+        background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+        color: var.$primary-foreground;
+
+        &:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
     }
-    &:hover{
-        transform: scale(1.05);
-        transition: transform 0.3s ease;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+
+    &--secondary {
+        background-color: transparent;
+        color: var.$primary-color;
+        border: 2px solid var.$primary-color;
+
+        &:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
     }
-    &:hover &__link__icon > svg {
-        transform: translateY(3px);
-      }
+
+    &--dark {
+        background-color: #0A0E27;
+        color: var.$primary-foreground;
+
+        &:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    }
 }
 
-.buttonSecond{
-    display: inline-flex;
-    border: solid 1px var.$primary-color;
-    border-radius: 25px;
-    padding: 12px 18px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    &__link{
-        color: var.$primary-color;
-    }
-    &:hover{
-        transform: scale(1.05);
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-}

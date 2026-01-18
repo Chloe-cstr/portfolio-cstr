@@ -1,0 +1,260 @@
+@use '../../../styles/abstracts/var';
+@use '../../../styles//abstracts/mixin';
+@use '../../../styles/animations/keyframes';
+
+.about {
+    padding: 120px 80px;
+    background-color: var.$primary-foreground;
+
+    @media (max-width: 968px) {
+        padding: 80px 40px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 60px 20px;
+    }
+
+  &__container {
+    margin: 0 auto;
+    padding: 0 24px;
+  
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+
+    @media (max-width: 968px) {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 0 16px;
+    }
+
+    @media (max-width: 768px) {
+        gap: 40px;
+        padding: 0;
+    }
+  }
+  
+  /* -------- Colonne gauche -------- */
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+
+    &.animate {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  &__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var.$primary-color;
+  }
+  
+  &__title {
+    max-width: 500px;
+    line-height: 1.2;
+
+    @media (max-width: 768px) {
+        font-size: 32px;
+        max-width: 100%;
+    }
+
+    &-accent{
+      color: var.$primary-color;
+    }
+  }
+  
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 560px;
+
+    @media (max-width: 768px) {
+        max-width: 100%;
+        gap: 20px;
+        font-size: 16px;
+    }
+  }
+  
+  /* -------- Colonne droite -------- */
+  
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+  }
+  
+  /* Visuel circulaire */
+  
+  &__avatar {
+    position: relative;
+    width: 320px;
+    height: 320px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+
+    @media (max-width: 968px) {
+        transform: translateY(50px);
+        width: 280px;
+        height: 280px;
+    }
+
+    @media (max-width: 768px) {
+        width: 240px;
+        height: 240px;
+        transform: translateY(30px);
+    }
+
+    &.animate {
+      opacity: 1;
+      transform: translateX(0);
+
+      @media (max-width: 968px) {
+          transform: translateY(0);
+      }
+    }
+
+    &__img{
+      width: 350px;
+      height: auto;
+      border-radius: 50%;
+      border: 2px solid var.$border;
+      box-shadow: 0 20px 80px rgba(139, 92, 246, 0.6);
+      z-index: 2;
+
+      @media (max-width: 968px) {
+          width: 300px;
+      }
+
+      @media (max-width: 768px) {
+          width: 260px;
+      }
+    }
+  }
+  
+  /* Bulles déco – positions uniquement */
+  
+  /* -------- Base des bulles -------- */
+
+  &__bubble {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    background-color: rgba(var.$primary-color, 0.12); // ajuste l’opacité ici
+    filter: blur(0.5px);
+    position: absolute;
+    pointer-events: none;
+  }
+
+  /* -------- Variantes de tailles -------- */
+
+  /* Bulle en haut à droite */
+  &__bubble--top {
+    width: 100px;
+    height: 100px;
+    top: -50px;
+    right: -30px;
+  }
+
+  /* Bulle à gauche */
+  &__bubble--left {
+    width: 64px;
+    height: 64px;
+    left: -60px;
+    bottom: 10px;
+  }
+
+  
+  /* -------- Cards -------- */
+  
+  &__cards {
+    width: 100%;
+  
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    &.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  &-card {
+    background-color: var.$primary-foreground;
+    border-radius: var.$radius;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    min-width: 280px;
+
+    @media (max-width: 768px) {
+        min-width: 100%;
+        padding: 20px;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(139, 92, 246, 0.2);
+      border-color: var.$accent;
+    }
+  }
+  
+  &-card__icon {
+    width: 48px;
+    height: 48px;
+    background-color: var.$accent;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var.$primary-foreground;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  &-card__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var.$foreground;
+    font-family: var.$text-font;
+    margin: 0;
+  }
+  
+  &-card__text {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var.$muted-foreground;
+    margin: 0;
+  }
+} 
+  

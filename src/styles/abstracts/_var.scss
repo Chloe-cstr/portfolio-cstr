@@ -1,13 +1,30 @@
-//Color
-$primary-color: #928DAB;
-$second-color: #363245;
-$background-color: #1F1C2C;
+//Color principal
+$primary-color: #6366F1;
+$background-color: #FAFAFA;
+$foreground : #0A0E27;
+$primary-foreground: #FFFFFF;
+$accent : #8B5CF6;
+
+//Color secondary
+$secondary-color: #F1F5F9;
+$muted : #E2E8F0;
+$muted-foreground : #64748B;
+
+//Color UI
+$border: rgba(15, 23, 42, 0.08);
+$input-background: #F8FAFC;
+$destructive: #d4183d;
+
+//bordure
+$radius: 0.75rem;
 
 //Size
-$size-text: 16px;
+$size-text: 18px;
 $size-title: 25px;
-$size-subtitle: 20px;
+$size-subtitle: 50px;
+$size-title-two: 85px;
+$size-muted: 14px;
 
 //Police
 $text-font: 'Montserrat', sans-serif;
-$title-font: 'MaPolice', sans-serif;
+$title-font: 'Playfair Display', sans-serif;

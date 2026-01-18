@@ -11,7 +11,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 80px 0 80px;
-    height: 110px;
+    height: 80px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     @media (max-width: 1000px){
@@ -20,30 +20,91 @@
     @media (max-width: 768px) {
       padding: 20px;
     }
-    &__logo {
-        width: 150px;
-        height: auto;
+    &__span {
+        color: var.$primary-color;
     }
     &__nav {
         width: 50%;
         @media (max-width: 1000px){
             display: none;
             position: fixed;
-            top: 50px;
+            top: 0;
+            left: 0;
             right: 0;
-            background-color: var.$background-color;
+            background-color: var.$primary-foreground;
             width: 100%;
             height: 100vh;
             flex-direction: column;
-            align-items: center;
-            transform: translateX(300%);
+            padding: 24px 20px;
+            transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
-            z-index: 2;
+            z-index: 1001;
+            overflow-y: auto;
             &.open {
                 display: flex;
                 transform: translateX(0);
             }
         }
+
+        &__top {
+            display: none;
+            @media (max-width: 1000px) {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 40px;
+            }
+        }
+
+        &__logo {
+            font-size: var.$size-title;
+            font-family: var.$title-font;
+            font-weight: 600;
+            margin: 0;
+
+            &__span {
+                color: var.$primary-color;
+            }
+        }
+
+        &__close {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var.$primary-color;
+            border-radius: 12px;
+            background-color: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            @media (max-width: 768px) {
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+            }
+
+            i {
+                font-size: 20px;
+                color: var.$foreground;
+                font-weight: bold;
+
+                @media (max-width: 768px) {
+                    font-size: 18px;
+                }
+            }
+
+            &:hover {
+                background-color: rgba(var.$primary-color, 0.1);
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+        }
+
         &__list {
             display: flex;
             justify-content: space-between;
@@ -51,15 +112,20 @@
             height: 100%;
             @media (max-width: 1000px){
                 flex-direction: column;
-                gap: 40px;
+                gap: 0;
+                align-items: flex-start;
+                width: 100%;
+                height: auto;
+                margin-bottom: auto;
+                padding: 0;
             }
         }
         &__item{
             height: 100%;
             @media (max-width: 1000px) {
                 height: auto;
-                @include mixin.flex-center;
-                margin-top: 50px;
+                width: 100%;
+                margin: 0;
             }
         }
         &__item__maj {
@@ -67,6 +133,7 @@
             height: 100%;
             display: flex;
             align-items: center;
+            font-family: var.$text-font;
             &::after {
                 content: "";
                 position: absolute;
@@ -81,17 +148,67 @@
             &.active::after {
                 width: 100%;
             }
+            @media (max-width: 1000px) {
+                padding: 16px 0;
+                font-size: var.$size-text;
+                color: var.$muted-foreground;
+                width: 100%;
+                height: auto;
+                text-align: left;
+                &::after {
+                    display: none;
+                }
+                &:hover {
+                    color: var.$foreground;
+                }
+            }
             &--contact{
                 background-color: var.$primary-color;
-                padding: 12px 18px;
-                border-radius: 20px;
+                padding: 8px 18px;
+                border-radius: var.$radius;
+                color: var.$primary-foreground;
                 transition: transform 0.25s ease, box-shadow 0.25s ease;
                 &::after {
                     content: none;
                 }
                 &:hover{
                     transform: scale(1.05);
-                    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+                    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.5);
+                }
+            }
+        }
+
+        &__actions {
+            display: none;
+            @media (max-width: 1000px) {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+                margin-top: auto;
+                padding-top: 24px;
+                border-top: 1px solid var.$border;
+
+                .btn {
+                    width: 100%;
+                    justify-content: center;
+                    padding: 14px 24px;
+                    border-radius: 50px;
+                    font-weight: 500;
+                }
+
+                .btn--primary {
+                    background: linear-gradient(135deg, var.$accent 0%, var.$primary-color 100%);
+                }
+
+                .btn--secondary {
+                    background-color: transparent;
+                    border: 1px solid var.$primary-color;
+                    color: var.$primary-color;
+                    
+                    &:hover {
+                        background-color: rgba(var.$primary-color, 0.05);
+                    }
                 }
             }
         }
@@ -100,10 +217,25 @@
         display: none;
         @media (max-width: 1000px){
             @include mixin.flex-center;
+            z-index: 1002;
         }
         &__icon{
             font-size: 25px;
             color: var.$primary-color;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    // Cacher le bouton hamburger quand le menu est ouvert
+    @media (max-width: 1000px) {
+        &__menu__icon.fa-xmark {
+            opacity: 0;
+            pointer-events: none;
         }
     }
 }

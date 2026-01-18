@@ -1,6 +1,6 @@
-import Logo from '../../assets/images/logo.png';
 import './header.scss'
 import { useState, useEffect } from "react";
+import Button from "../Button/Button";
 
 const Header = () => {
     const [activeSection, setActiveSection] = useState("");
@@ -27,9 +27,10 @@ const Header = () => {
     }, []);
 
     const navItems = [
-        { label: "Présentation", href: "#presentation" },
+        { label: "Accueil", href: "#accueil" },
+        { label: "A propos", href: "#about" },
+        { label: "Projets", href: "#projects" },
         { label: "Compétences", href: "#competences" },
-        { label: "Mes réalisations", href: "#realisations" },
         { label: "Contact", href: "#contact" },
     ];
 
@@ -41,9 +42,9 @@ const Header = () => {
 
     useEffect(() => {
         if (isMenuOpen) {
-          document.body.style.overflow = "hidden"; // ⛔ empêche de scroller
+          document.body.style.overflow = "hidden"; // empêche de scroller
         } else {
-          document.body.style.overflow = ""; // ✅ remet normal
+          document.body.style.overflow = ""; // remet normal
         }
     
         // Nettoyage au démontage (bonne pratique)
@@ -54,8 +55,20 @@ const Header = () => {
 
     return (
         <header className="header">
-            <img src={Logo} alt="Logo" className="header__logo" />
+            <h1> <span className='header__span'>Chloë</span> Dev</h1>
             <nav className={`header__nav ${isMenuOpen ? "open" : ""}`}>
+                <div className="header__nav__top">
+                    <h1 className="header__nav__logo">
+                        <span className='header__nav__logo__span'>Chloë</span> Dev
+                    </h1>
+                    <button 
+                        className="header__nav__close" 
+                        onClick={toggleMenu}
+                        aria-label="Fermer le menu"
+                    >
+                        <i className="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
                 <ul className="header__nav__list">
                     {navItems.map((item) => (
                         <li className="header__nav__item" key={item.href}>
@@ -63,7 +76,7 @@ const Header = () => {
                             href={item.href}
                             className={`header__nav__item__maj ${
                                 activeSection === item.href.slice(1) ? "active" : ""
-                            } ${item.label === "Contact" ? "header__nav__item__maj--contact" : ""}`}
+                            }`}
                             onClick={() => setIsMenuOpen(false)}
                             >
                             {item.label}
@@ -71,10 +84,32 @@ const Header = () => {
                         </li>
                     ))}
                 </ul>
+                <div className="header__nav__actions">
+                    <Button 
+                        text="Me contacter" 
+                        className="btn--primary" 
+                        href="#contact"
+                        onClick={() => setIsMenuOpen(false)}
+                    />
+                    <Button 
+                        text="Voir mes projets" 
+                        className="btn--primary" 
+                        href="#projets"
+                        onClick={() => setIsMenuOpen(false)}
+                    />
+                    <Button 
+                        text="Voir mon GitHub" 
+                        className="btn--secondary" 
+                        href="https://github.com/Chloe-cstr"
+                        onClick={() => setIsMenuOpen(false)}
+                    />
+                </div>
             </nav>
-            <div className='header__menu'>
-            <i className={`fa-solid ${isMenuOpen ? "fa-xmark" : "fa-bars"} header__menu__icon`} onClick={toggleMenu}></i>
-            </div>
+            {!isMenuOpen && (
+                <div className='header__menu'>
+                    <i className="fa-solid fa-bars header__menu__icon" onClick={toggleMenu}></i>
+                </div>
+            )}
         </header>
     );
 };

@@ -1,64 +1,165 @@
 @use '../../styles/abstracts/var';
-@use '../../styles//abstracts/mixin';
-@use '../../styles/animations/keyframes';
+@use '../../styles/abstracts/mixin';
 
 .footer{
-    padding: 20px 80px;
-    @include mixin.flex-center;
-    gap: 24px;
-    width: 100%;
-    &__content{
+    background-color: var.$foreground;
+    padding: 80px;
+    color: var.$primary-foreground;
+
+    @media (max-width: 968px) {
+        padding: 60px 40px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 50px 20px;
+    }
+
+    &__container{
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    &__top{
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 40px;
+
+        @media (max-width: 968px) {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+    }
+
+    &__branding{
         display: flex;
         flex-direction: column;
-        gap: 24px;
-        width: 50%;
-        &__img{
-            width: 150px;
-            height: auto;
+        gap: 20px;
+    }
+
+    &__logo{
+        font-size: var.$size-title;
+        font-family: var.$title-font;
+        font-weight: 600;
+        margin: 0;
+        color: var.$background-color;
+        &--accent{
+            color: var.$accent;
         }
-        &__text{
-            line-height: 1.7;
-        }
-        &__media{
+    }
+
+    &__description{
+        font-size: var.$size-text;
+        font-family: var.$text-font;
+        color: var.$primary-foreground;
+        line-height: 1.6;
+        margin: 0;
+        max-width: 400px;
+    }
+
+    &__socials{
+        display: flex;
+        gap: 16px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li{
             display: flex;
-            gap: 24px;
-            margin-top: 12px;
         }
-    }
-    &__nav{
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        width: 25%;
-        &__item{
-            padding-bottom: 24px;
+
+        a{
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var.$primary-foreground;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var.$foreground;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            text-decoration: none;
+
+            svg{
+                width: 20px;
+                height: 20px;
+                stroke-width: 2;
+            }
+
             &:hover{
-                text-decoration: underline;
+                background-color: var.$accent;
+                color: var.$primary-foreground;
+                transform: translateY(-2px);
             }
         }
     }
-    &__contact{
+
+    &__nav,
+    &__resources{
         display: flex;
         flex-direction: column;
-        gap: 24px;
-        width: 25%;
-        &__list{
-            &__item{
-                padding-bottom: 24px;
-                
-            }
-            &--border{
-                border: 1px solid var.$primary-color;
-                border-radius: 20px;
-                padding: 7px 20px;
-                display: inline-flex;
-                align-items: center;
-                &__icon{
-                    margin-right: 7px;
-                    color: #05DF72;
-                    font-size: 10px;
-                }
+        gap: 16px;
+    }
+
+    &__title{
+        font-size: var.$size-text;
+        font-family: var.$text-font;
+        font-weight: 600;
+        color: var.$primary-foreground;
+        margin: 0;
+    }
+
+    &__links{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        a{
+            font-size: var.$size-text;
+            font-family: var.$text-font;
+            color: var.$primary-foreground;
+            text-decoration: none;
+            transition: color 0.2s ease;
+
+            &:hover{
+                color: var.$accent;
             }
         }
+    }
+
+    &__separator{
+        width: 100%;
+        height: 1px;
+        background-color: var.$border;
+        margin: 40px 0;
+        opacity: 0.3;
+    }
+
+    &__bottom{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+        }
+    }
+
+    &__copyright,
+    &__credit{
+        font-size: var.$size-muted;
+        font-family: var.$text-font;
+        color: var.$primary-foreground;
+        margin: 0;
+    }
+
+    &__heart{
+        color: var.$accent;
     }
 }
